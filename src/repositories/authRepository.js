@@ -10,9 +10,13 @@ async function findByEmail(email) {
   const user = await UserSchema.findOne({ email });
   return user;
 }
+async function findById(id) {
+  const user = await UserSchema.findById(id);
+  return user;
+}
 
 async function generateToken(id) {
   return jwt.sign({ id }, process.env.SECRET, { expiresIn: 86400 });
 }
 
-export default { create, findByEmail, generateToken };
+export default { create, findByEmail, generateToken, findById };
