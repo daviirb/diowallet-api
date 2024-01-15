@@ -15,5 +15,5 @@ transactionRouter.post(
 );
 
 transactionRouter.get("/transactions", transactionController.findAllByUser);
-
+transactionRouter.patch("/transactions/:id", transactionController.update);
 export default transactionRouter;

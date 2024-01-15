@@ -23,4 +23,17 @@ async function findAllByUser(req, res) {
   }
 }
 
-export default { create, findAllByUser };
+async function update(req, res) {
+  const body = req.body;
+  const { id: transactionId } = req.params;
+  const { _id: id } = res.locals.user;
+
+  try {
+    update = await transactionService.update(transactionId, body, id);
+    return res.send(update);
+  } catch (err) {
+    return res.status(400).send(err.message);
+  }
+}
+
+export default { create, findAllByUser, update };
