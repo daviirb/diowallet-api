@@ -36,4 +36,21 @@ async function update(req, res) {
   }
 }
 
-export default { create, findAllByUser, update };
+async function deleteTransaction(req, res) {
+  const body = req.body;
+  const { id: transactionId } = req.params;
+  const { _id: id } = res.locals.user;
+
+  try {
+    deleteTransaction = await transactionService.deleteTransaction(
+      transactionId,
+      body,
+      id
+    );
+    return res.send(deleteTransaction);
+  } catch (err) {
+    return res.status(400).send(err.message);
+  }
+}
+
+export default { create, findAllByUser, update, deleteTransaction };

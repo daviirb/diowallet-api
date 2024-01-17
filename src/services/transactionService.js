@@ -21,4 +21,12 @@ async function update(transactionId, body, id) {
   });
 }
 
-export default { create, findAllByUser, update };
+async function deleteTransaction(transactionId, body, id) {
+  if (!id) throw new Error("User id is required");
+  return await transactionRepository.deleteTransaction(transactionId, {
+    ...body,
+    userId: id,
+  });
+}
+
+export default { create, findAllByUser, update, deleteTransaction };

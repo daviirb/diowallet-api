@@ -8,8 +8,12 @@ async function update(id, data) {
   return TransactionSchema.findOneAndUpdate({ _id: id }, data, { new: true });
 }
 
+async function deleteTransaction(id) {
+  return TransactionSchema.findByIdAndDelete({ _id: id });
+}
+
 async function findAllByUser(id) {
   return await TransactionSchema.find({ userId: id });
 }
 
-export default { create, findAllByUser, update };
+export default { create, findAllByUser, update, deleteTransaction };
