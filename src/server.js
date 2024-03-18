@@ -12,5 +12,19 @@ app.use(cors());
 app.use(authRouter);
 app.use(transactionRouter);
 
-const port = process.env.PORT;
+const port = normalizePort(process.env.PORT || 5000);
 app.listen(port, () => console.log(`Server linstenig in port ${port}`));
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    return val;
+  }
+
+  if (port >= 0) {
+    return port;
+  }
+
+  return false;
+}
